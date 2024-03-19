@@ -9,24 +9,24 @@ public class TopSong : ITableEntity {
         Duration = song.Duration;
     }
 
-    public TopSong() { }
+    public TopSong() {
+    }
 
     public string Id => RowKey;
-    [Required]
-    public string Title { get; set; }
-    [Required]
-    public string Artist { get; set; }
-    [Required]
-    public int Duration { get; set; }
 
-    [Required]
-    public string Genre { get; set; }
+    [Required] public string Title { get; set; } = null!;
+
+    [Required] public string Artist { get; set; } = null!;
+
+    [Required] public int Duration { get; set; }
+
+    [Required] public string Genre { get; set; } = null!;
 
     public int Views { get; set; }
 
-    
+
     public string PartitionKey { get; set; } = "TopSong";
-    public string RowKey { get; set; }
+    public string RowKey { get; set; } = null!;
 
     public DateTimeOffset? Timestamp { get; set; }
     public ETag ETag { get; set; }

@@ -12,15 +12,11 @@ builder.Services.AddMassTransit(x => {
         });
 
         cfg.Publish<ViewSongMessage>(pCfg => {
-            pCfg.BindQueue("view-exchange", "view-queue", c => {
-                c.ExchangeType = "topic";
-            });
+            pCfg.BindQueue("view-exchange", "view-queue", c => { c.ExchangeType = "topic"; });
             pCfg.Durable = true;
             pCfg.AutoDelete = false;
         });
-        cfg.Send<ViewSongMessage>(sendTopology => {
-            sendTopology.UseRoutingKeyFormatter(c => c.Message.RoutingKey);
-        });
+        cfg.Send<ViewSongMessage>(sendTopology => { sendTopology.UseRoutingKeyFormatter(c => c.Message.RoutingKey); });
     });
 });
 
